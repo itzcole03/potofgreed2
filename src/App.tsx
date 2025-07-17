@@ -24,6 +24,7 @@ function App() {
   const [bets, setBets] = useLocalStorage<Bet[]>("bet-tracker-bets", []);
   const [nextId, setNextId] = useLocalStorage<number>("bet-tracker-next-id", 1);
   const [showLossGif, setShowLossGif] = useState(false);
+  const [showWinGif, setShowWinGif] = useState(false);
 
   const addBet = () => {
     const betAmount = parseFloat(currentBet);
