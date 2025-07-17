@@ -225,10 +225,10 @@ function App() {
         </div>
 
         {/* Current Bet Input */}
-        <div className="space-y-6">
-          <div className="flex space-x-4">
+        <div className="space-y-4 md:space-y-6">
+          <div className="flex flex-col space-y-3 md:flex-row md:space-y-0 md:space-x-4">
             <div className="relative flex-1">
-              <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/60 text-lg">
+              <span className="absolute left-3 md:left-4 top-1/2 transform -translate-y-1/2 text-white/60 text-base md:text-lg">
                 $
               </span>
               <input
@@ -237,7 +237,7 @@ function App() {
                 onChange={(e) => setCurrentBet(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Enter bet amount"
-                className="w-full pl-10 pr-4 py-4 bg-slate-800 border border-slate-600 rounded-lg text-white text-lg placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                className="w-full pl-8 md:pl-10 pr-3 md:pr-4 py-3 md:py-4 bg-slate-800 border border-slate-600 rounded-lg text-white text-base md:text-lg placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                 step="0.01"
                 min="0"
               />
@@ -245,7 +245,7 @@ function App() {
             <button
               onClick={addBet}
               disabled={!currentBet || parseFloat(currentBet) <= 0}
-              className="px-6 py-4 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-600/30 disabled:cursor-not-allowed text-white font-semibold text-lg rounded-lg transition-all duration-200"
+              className="px-4 md:px-6 py-3 md:py-4 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-600/30 disabled:cursor-not-allowed text-white font-semibold text-base md:text-lg rounded-lg transition-all duration-200"
             >
               Add Bet
             </button>
