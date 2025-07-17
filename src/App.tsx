@@ -71,7 +71,7 @@ function App() {
     if (status === "win") {
       setShowWinGif(true);
 
-      // Hide after 2 seconds to restart the GIF
+      // Hide after 3 seconds to restart the GIF (to capture end of animation)
       setTimeout(() => {
         setShowWinGif(false);
 
@@ -79,12 +79,12 @@ function App() {
         setTimeout(() => {
           setShowWinGif(true);
 
-          // Hide after another 2 seconds (total 4 seconds)
+          // Hide after another 3 seconds (total 6 seconds)
           setTimeout(() => {
             setShowWinGif(false);
-          }, 2000);
+          }, 3000);
         }, 50);
-      }, 2000);
+      }, 3000);
     }
   };
 
