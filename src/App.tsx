@@ -219,7 +219,7 @@ function App() {
           {/* Stored Bets */}
           {bets.length > 0 && (
             <div className="space-y-3 max-h-64 overflow-y-auto">
-              {bets.map((bet) => (
+              {[...bets].reverse().map((bet) => (
                 <div
                   key={bet.id}
                   className="flex items-center justify-between bg-slate-800 rounded-lg p-4"
