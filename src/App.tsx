@@ -164,54 +164,58 @@ function App() {
           </p>
         </div>
 
-        {/* Stats Row with Image in Center */}
-        <div className="flex justify-between items-center">
+        {/* Image - Mobile Optimized */}
+        <div className="flex justify-center mb-4">
+          <img
+            src={
+              showLossGif
+                ? "https://cdn.builder.io/o/assets%2F6f818f1145f44c66b26bf3701c0e4bb7%2Fa694ffa0ddef433cab03f6631c1615e9?alt=media&token=51d89a31-af35-4722-9840-6d9a2ac308d1&apiKey=6f818f1145f44c66b26bf3701c0e4bb7"
+                : showWinGif
+                  ? "https://cdn.builder.io/o/assets%2F6f818f1145f44c66b26bf3701c0e4bb7%2Fafda5189518b40a0b0daac5b21aed983?alt=media&token=15d4c55d-a753-49a5-8fc9-4c9d7d7078e9&apiKey=6f818f1145f44c66b26bf3701c0e4bb7"
+                  : "/potofgreed-removebg-preview.png"
+            }
+            alt={
+              showLossGif
+                ? "Loss Animation"
+                : showWinGif
+                  ? "Win Animation"
+                  : "Pot of Greed"
+            }
+            className="w-48 h-48 md:w-80 md:h-80 object-contain"
+          />
+        </div>
+
+        {/* Stats Row - Mobile Optimized */}
+        <div className="grid grid-cols-2 gap-4 md:flex md:justify-between md:items-center">
           {/* Losses */}
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-2 md:space-x-3 bg-slate-800 p-3 rounded-lg">
             <div className="relative">
-              <div className="w-10 h-10 bg-red-600/20 rounded-full flex items-center justify-center border-2 border-red-500">
-                <TrendingDown className="w-6 h-6 text-red-400 animate-pulse" />
+              <div className="w-8 h-8 md:w-10 md:h-10 bg-red-600/20 rounded-full flex items-center justify-center border-2 border-red-500">
+                <TrendingDown className="w-4 h-4 md:w-6 md:h-6 text-red-400 animate-pulse" />
               </div>
             </div>
             <div>
-              <p className="text-red-400 text-sm font-medium">Losses</p>
-              <p className="text-red-300 text-2xl font-bold">
+              <p className="text-red-400 text-xs md:text-sm font-medium">
+                Losses
+              </p>
+              <p className="text-red-300 text-lg md:text-2xl font-bold">
                 {formatCurrency(totalLosses)}
               </p>
             </div>
           </div>
 
-          {/* Image - Extra Large and Centered */}
-          <div className="flex justify-center">
-            <img
-              src={
-                showLossGif
-                  ? "https://cdn.builder.io/o/assets%2F6f818f1145f44c66b26bf3701c0e4bb7%2Fa694ffa0ddef433cab03f6631c1615e9?alt=media&token=51d89a31-af35-4722-9840-6d9a2ac308d1&apiKey=6f818f1145f44c66b26bf3701c0e4bb7"
-                  : showWinGif
-                    ? "https://cdn.builder.io/o/assets%2F6f818f1145f44c66b26bf3701c0e4bb7%2Fafda5189518b40a0b0daac5b21aed983?alt=media&token=15d4c55d-a753-49a5-8fc9-4c9d7d7078e9&apiKey=6f818f1145f44c66b26bf3701c0e4bb7"
-                    : "/potofgreed-removebg-preview.png"
-              }
-              alt={
-                showLossGif
-                  ? "Loss Animation"
-                  : showWinGif
-                    ? "Win Animation"
-                    : "Pot of Greed"
-              }
-              className="w-80 h-80 object-contain"
-            />
-          </div>
-
           {/* Profit */}
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-2 md:space-x-3 bg-slate-800 p-3 rounded-lg">
             <div className="relative">
-              <div className="w-10 h-10 bg-green-600/20 rounded-full flex items-center justify-center border-2 border-green-500">
-                <TrendingUp className="w-6 h-6 text-green-400 animate-bounce" />
+              <div className="w-8 h-8 md:w-10 md:h-10 bg-green-600/20 rounded-full flex items-center justify-center border-2 border-green-500">
+                <TrendingUp className="w-4 h-4 md:w-6 md:h-6 text-green-400 animate-bounce" />
               </div>
             </div>
             <div>
-              <p className="text-green-400 text-sm font-medium">Profit</p>
-              <p className="text-green-300 text-2xl font-bold">
+              <p className="text-green-400 text-xs md:text-sm font-medium">
+                Profit
+              </p>
+              <p className="text-green-300 text-lg md:text-2xl font-bold">
                 {formatCurrency(totalProfit)}
               </p>
             </div>
