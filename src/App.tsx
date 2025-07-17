@@ -12,8 +12,6 @@ import {
   AlertTriangle,
 } from "lucide-react";
 import { useLocalStorage } from "./hooks/useLocalStorage";
-import { StatusBar, Style } from "@capacitor/status-bar";
-import { SplashScreen } from "@capacitor/splash-screen";
 
 interface Bet {
   id: number;
