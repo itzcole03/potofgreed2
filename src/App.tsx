@@ -253,19 +253,19 @@ function App() {
 
           {/* Stored Bets */}
           {bets.length > 0 && (
-            <div className="space-y-3 max-h-64 overflow-y-auto">
+            <div className="space-y-2 md:space-y-3 max-h-64 md:max-h-80 overflow-y-auto">
               {[...bets].reverse().map((bet) => (
                 <div
                   key={bet.id}
-                  className="flex items-center justify-between bg-slate-800 rounded-lg p-4"
+                  className="flex items-center justify-between bg-slate-800 rounded-lg p-3 md:p-4"
                 >
-                  <div className="flex items-center space-x-4">
-                    <span className="text-white text-lg font-medium">
+                  <div className="flex items-center space-x-2 md:space-x-4">
+                    <span className="text-white text-base md:text-lg font-medium">
                       {formatCurrency(bet.amount)}
                     </span>
                     {bet.status !== "pending" && (
                       <span
-                        className={`px-2 py-1 rounded text-sm font-medium ${
+                        className={`px-2 py-1 rounded text-xs md:text-sm font-medium ${
                           bet.status === "win"
                             ? "bg-green-600/20 text-green-300"
                             : "bg-red-600/20 text-red-300"
@@ -277,16 +277,16 @@ function App() {
                   </div>
 
                   {bet.status === "pending" && (
-                    <div className="flex space-x-2">
+                    <div className="flex space-x-1 md:space-x-2">
                       <button
                         onClick={() => updateBetStatus(bet.id, "loss")}
-                        className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-medium rounded transition-all duration-200"
+                        className="px-3 md:px-4 py-1.5 md:py-2 bg-red-600 hover:bg-red-700 text-white font-medium text-sm md:text-base rounded transition-all duration-200"
                       >
                         Loss
                       </button>
                       <button
                         onClick={() => updateBetStatus(bet.id, "win")}
-                        className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded transition-all duration-200"
+                        className="px-3 md:px-4 py-1.5 md:py-2 bg-green-600 hover:bg-green-700 text-white font-medium text-sm md:text-base rounded transition-all duration-200"
                       >
                         Win
                       </button>
