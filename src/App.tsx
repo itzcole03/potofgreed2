@@ -1,54 +1,68 @@
-import React, { useState } from 'react';
-import { TrendingUp, TrendingDown, DollarSign, Coins, Flame, Zap, Target, Skull, Trophy, AlertTriangle } from 'lucide-react';
-import { useLocalStorage } from './hooks/useLocalStorage';
+import React, { useState, useEffect } from "react";
+import {
+  TrendingUp,
+  TrendingDown,
+  DollarSign,
+  Coins,
+  Flame,
+  Zap,
+  Target,
+  Skull,
+  Trophy,
+  AlertTriangle,
+} from "lucide-react";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
 interface Bet {
   id: number;
   amount: number;
-  status: 'pending' | 'win' | 'loss';
+  status: "pending" | "win" | "loss";
 }
 
 function App() {
-  const [currentBet, setCurrentBet] = useState('');
-  const [bets, setBets] = useLocalStorage<Bet[]>('bet-tracker-bets', []);
-  const [nextId, setNextId] = useLocalStorage<number>('bet-tracker-next-id', 1);
+  const [currentBet, setCurrentBet] = useState("");
+  const [bets, setBets] = useLocalStorage<Bet[]>("bet-tracker-bets", []);
+  const [nextId, setNextId] = useLocalStorage<number>("bet-tracker-next-id", 1);
 
   const addBet = () => {
     const betAmount = parseFloat(currentBet);
     if (betAmount && betAmount > 0) {
-      setBets(prev => [...prev, {
-        id: nextId,
-        amount: betAmount,
-        status: 'pending'
-      }]);
-      setNextId(prev => prev + 1);
-      setCurrentBet('');
+      setBets((prev) => [
+        ...prev,
+        {
+          id: nextId,
+          amount: betAmount,
+          status: "pending",
+        },
+      ]);
+      setNextId((prev) => prev + 1);
+      setCurrentBet("");
     }
   };
 
-  const updateBetStatus = (id: number, status: 'win' | 'loss') => {
-    setBets(prev => prev.map(bet => 
-      bet.id === id ? { ...bet, status } : bet
-    ));
+  const updateBetStatus = (id: number, status: "win" | "loss") => {
+    setBets((prev) =>
+      prev.map((bet) => (bet.id === id ? { ...bet, status } : bet)),
+    );
   };
 
   const totalLosses = bets
-    .filter(bet => bet.status === 'loss')
+    .filter((bet) => bet.status === "loss")
     .reduce((sum, bet) => sum + bet.amount, 0);
 
   const totalProfit = bets
-    .filter(bet => bet.status === 'win')
+    .filter((bet) => bet.status === "win")
     .reduce((sum, bet) => sum + bet.amount, 0);
 
   const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD'
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
     }).format(amount);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       addBet();
     }
   };
@@ -61,13 +75,15 @@ function App() {
           <div className="flex justify-center mb-3">
             <div className="relative">
               {/* Base pot shape */}
-              <div className={`w-16 h-16 rounded-full border-4 transition-all duration-500 ${
-                totalProfit - totalLosses > 0 
-                  ? 'bg-green-100 border-green-400' 
-                  : totalProfit - totalLosses < 0 
-                  ? 'bg-red-100 border-red-400' 
-                  : 'bg-yellow-100 border-yellow-400'
-              }`}>
+              <div
+                className={`w-16 h-16 rounded-full border-4 transition-all duration-500 ${
+                  totalProfit - totalLosses > 0
+                    ? "bg-green-100 border-green-400"
+                    : totalProfit - totalLosses < 0
+                      ? "bg-red-100 border-red-400"
+                      : "bg-yellow-100 border-yellow-400"
+                }`}
+              >
                 {/* Split face based on net result */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   {totalProfit - totalLosses > 0 ? (
@@ -82,7 +98,7 @@ function App() {
                   )}
                 </div>
               </div>
-              
+
               {/* Floating effect indicators */}
               {totalProfit - totalLosses > 0 && (
                 <div className="absolute -top-2 -right-2">
@@ -97,9 +113,11 @@ function App() {
             </div>
           </div>
           <p className="text-white/60 text-sm font-medium mb-2">Net Result</p>
-          <p className={`text-3xl font-bold ${
-            totalProfit - totalLosses >= 0 ? 'text-green-300' : 'text-red-300'
-          }`}>
+          <p
+            className={`text-3xl font-bold ${
+              totalProfit - totalLosses >= 0 ? "text-green-300" : "text-red-300"
+            }`}
+          >
             {formatCurrency(totalProfit - totalLosses)}
           </p>
         </div>
@@ -115,15 +133,17 @@ function App() {
             </div>
             <div>
               <p className="text-red-400 text-sm font-medium">Losses</p>
-              <p className="text-red-300 text-2xl font-bold">{formatCurrency(totalLosses)}</p>
+              <p className="text-red-300 text-2xl font-bold">
+                {formatCurrency(totalLosses)}
+              </p>
             </div>
           </div>
 
           {/* Image - Extra Large and Centered */}
           <div className="flex justify-center">
-            <img 
-              src="/potofgreed-removebg-preview.png" 
-              alt="Pot of Greed" 
+            <img
+              src="/potofgreed-removebg-preview.png"
+              alt="Pot of Greed"
               className="w-80 h-80 object-contain"
             />
           </div>
@@ -137,7 +157,9 @@ function App() {
             </div>
             <div>
               <p className="text-green-400 text-sm font-medium">Profit</p>
-              <p className="text-green-300 text-2xl font-bold">{formatCurrency(totalProfit)}</p>
+              <p className="text-green-300 text-2xl font-bold">
+                {formatCurrency(totalProfit)}
+              </p>
             </div>
           </div>
         </div>
@@ -146,7 +168,9 @@ function App() {
         <div className="space-y-6">
           <div className="flex space-x-4">
             <div className="relative flex-1">
-              <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/60 text-lg">$</span>
+              <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white/60 text-lg">
+                $
+              </span>
               <input
                 type="number"
                 value={currentBet}
@@ -171,32 +195,37 @@ function App() {
           {bets.length > 0 && (
             <div className="space-y-3 max-h-64 overflow-y-auto">
               {bets.map((bet) => (
-                <div key={bet.id} className="flex items-center justify-between bg-slate-800 rounded-lg p-4">
+                <div
+                  key={bet.id}
+                  className="flex items-center justify-between bg-slate-800 rounded-lg p-4"
+                >
                   <div className="flex items-center space-x-4">
                     <span className="text-white text-lg font-medium">
                       {formatCurrency(bet.amount)}
                     </span>
-                    {bet.status !== 'pending' && (
-                      <span className={`px-2 py-1 rounded text-sm font-medium ${
-                        bet.status === 'win' 
-                          ? 'bg-green-600/20 text-green-300' 
-                          : 'bg-red-600/20 text-red-300'
-                      }`}>
-                        {bet.status === 'win' ? 'Won' : 'Lost'}
+                    {bet.status !== "pending" && (
+                      <span
+                        className={`px-2 py-1 rounded text-sm font-medium ${
+                          bet.status === "win"
+                            ? "bg-green-600/20 text-green-300"
+                            : "bg-red-600/20 text-red-300"
+                        }`}
+                      >
+                        {bet.status === "win" ? "Won" : "Lost"}
                       </span>
                     )}
                   </div>
-                  
-                  {bet.status === 'pending' && (
+
+                  {bet.status === "pending" && (
                     <div className="flex space-x-2">
                       <button
-                        onClick={() => updateBetStatus(bet.id, 'loss')}
+                        onClick={() => updateBetStatus(bet.id, "loss")}
                         className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-medium rounded transition-all duration-200"
                       >
                         Loss
                       </button>
                       <button
-                        onClick={() => updateBetStatus(bet.id, 'win')}
+                        onClick={() => updateBetStatus(bet.id, "win")}
                         className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded transition-all duration-200"
                       >
                         Win
