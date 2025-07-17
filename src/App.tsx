@@ -49,9 +49,20 @@ function App() {
     // Show GIF animation for losses
     if (status === "loss") {
       setShowLossGif(true);
-      // Return to original image after 2 seconds
+
+      // Hide after 2 seconds to restart the GIF
       setTimeout(() => {
         setShowLossGif(false);
+
+        // Show again immediately to restart the animation
+        setTimeout(() => {
+          setShowLossGif(true);
+
+          // Hide after another 2 seconds (total 4 seconds)
+          setTimeout(() => {
+            setShowLossGif(false);
+          }, 2000);
+        }, 50);
       }, 2000);
     }
   };
