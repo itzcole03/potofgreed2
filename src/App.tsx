@@ -152,8 +152,12 @@ function App() {
           {/* Image - Extra Large and Centered */}
           <div className="flex justify-center">
             <img
-              src="/potofgreed-removebg-preview.png"
-              alt="Pot of Greed"
+              src={
+                showLossGif
+                  ? "/loss-animation.gif"
+                  : "/potofgreed-removebg-preview.png"
+              }
+              alt={showLossGif ? "Loss Animation" : "Pot of Greed"}
               className="w-80 h-80 object-contain"
             />
           </div>
