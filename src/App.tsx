@@ -154,7 +154,7 @@ function App() {
             <img
               src={
                 showLossGif
-                  ? "/Untitled video - Made with Clipchamp.gif"
+                  ? "https://cdn.builder.io/o/assets%2F6f818f1145f44c66b26bf3701c0e4bb7%2Fa0df34278925458cae91b9467cf927eb?alt=media&token=bd5115f7-d328-416a-8609-64fd9d3506eb&apiKey=6f818f1145f44c66b26bf3701c0e4bb7"
                   : "/potofgreed-removebg-preview.png"
               }
               alt={showLossGif ? "Loss Animation" : "Pot of Greed"}
