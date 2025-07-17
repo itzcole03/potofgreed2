@@ -32,6 +32,14 @@ function App() {
     // Configure status bar for iOS
     StatusBar.setStyle({ style: Style.Light });
     StatusBar.setBackgroundColor({ color: "#0f172a" }); // slate-900
+
+    // Hide splash screen after app loads
+    const hideSplash = async () => {
+      await SplashScreen.hide();
+    };
+
+    // Hide splash screen after a short delay to ensure app is ready
+    setTimeout(hideSplash, 500);
   }, []);
 
   const addBet = () => {
