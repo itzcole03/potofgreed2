@@ -66,6 +66,26 @@ function App() {
         }, 50);
       }, 2000);
     }
+
+    // Show GIF animation for wins
+    if (status === "win") {
+      setShowWinGif(true);
+
+      // Hide after 2 seconds to restart the GIF
+      setTimeout(() => {
+        setShowWinGif(false);
+
+        // Show again immediately to restart the animation
+        setTimeout(() => {
+          setShowWinGif(true);
+
+          // Hide after another 2 seconds (total 4 seconds)
+          setTimeout(() => {
+            setShowWinGif(false);
+          }, 2000);
+        }, 50);
+      }, 2000);
+    }
   };
 
   const totalLosses = bets
