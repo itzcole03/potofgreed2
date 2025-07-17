@@ -154,7 +154,7 @@ function App() {
             <img
               src={
                 showLossGif
-                  ? "/loss-animation.gif"
+                  ? "/Untitled video - Made with Clipchamp.gif"
                   : "/potofgreed-removebg-preview.png"
               }
               alt={showLossGif ? "Loss Animation" : "Pot of Greed"}
