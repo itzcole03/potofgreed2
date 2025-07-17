@@ -117,7 +117,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-start p-4 pt-safe-area-inset-top">
+    <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-start p-4 safe-area-top safe-area-bottom safe-area-left safe-area-right">
       <div className="max-w-2xl w-full space-y-4 md:space-y-8">
         {/* Net Result - Directly Above Image */}
         <div className="text-center">
