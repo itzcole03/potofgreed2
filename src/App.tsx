@@ -27,6 +27,12 @@ function App() {
   const [showLossGif, setShowLossGif] = useState(false);
   const [showWinGif, setShowWinGif] = useState(false);
 
+  useEffect(() => {
+    // Configure status bar for iOS
+    StatusBar.setStyle({ style: Style.Light });
+    StatusBar.setBackgroundColor({ color: "#0f172a" }); // slate-900
+  }, []);
+
   const addBet = () => {
     const betAmount = parseFloat(currentBet);
     if (betAmount && betAmount > 0) {
