@@ -49,10 +49,10 @@ function App() {
     // Show GIF animation for losses
     if (status === "loss") {
       setShowLossGif(true);
-      // Return to original image after 3 seconds
+      // Return to original image after 2 seconds
       setTimeout(() => {
         setShowLossGif(false);
-      }, 3000);
+      }, 2000);
     }
   };
 
