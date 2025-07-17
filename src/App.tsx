@@ -154,9 +154,11 @@ function App() {
               )}
             </div>
           </div>
-          <p className="text-white/60 text-sm font-medium mb-2">Net Result</p>
+          <p className="text-white/60 text-xs md:text-sm font-medium mb-2">
+            Net Result
+          </p>
           <p
-            className={`text-3xl font-bold ${
+            className={`text-2xl md:text-3xl font-bold ${
               totalProfit - totalLosses >= 0 ? "text-green-300" : "text-red-300"
             }`}
           >
