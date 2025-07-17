@@ -45,6 +45,15 @@ function App() {
     setBets((prev) =>
       prev.map((bet) => (bet.id === id ? { ...bet, status } : bet)),
     );
+
+    // Show GIF animation for losses
+    if (status === "loss") {
+      setShowLossGif(true);
+      // Return to original image after 3 seconds
+      setTimeout(() => {
+        setShowLossGif(false);
+      }, 3000);
+    }
   };
 
   const totalLosses = bets
