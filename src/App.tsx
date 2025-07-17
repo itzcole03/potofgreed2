@@ -187,9 +187,17 @@ function App() {
               src={
                 showLossGif
                   ? "https://cdn.builder.io/o/assets%2F6f818f1145f44c66b26bf3701c0e4bb7%2Fa694ffa0ddef433cab03f6631c1615e9?alt=media&token=51d89a31-af35-4722-9840-6d9a2ac308d1&apiKey=6f818f1145f44c66b26bf3701c0e4bb7"
-                  : "/potofgreed-removebg-preview.png"
+                  : showWinGif
+                    ? "https://cdn.builder.io/o/assets%2F6f818f1145f44c66b26bf3701c0e4bb7%2Fafda5189518b40a0b0daac5b21aed983?alt=media&token=15d4c55d-a753-49a5-8fc9-4c9d7d7078e9&apiKey=6f818f1145f44c66b26bf3701c0e4bb7"
+                    : "/potofgreed-removebg-preview.png"
               }
-              alt={showLossGif ? "Loss Animation" : "Pot of Greed"}
+              alt={
+                showLossGif
+                  ? "Loss Animation"
+                  : showWinGif
+                    ? "Win Animation"
+                    : "Pot of Greed"
+              }
               className="w-80 h-80 object-contain"
             />
           </div>
