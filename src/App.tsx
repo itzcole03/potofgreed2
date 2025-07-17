@@ -12,6 +12,7 @@ import {
   AlertTriangle,
 } from "lucide-react";
 import { useLocalStorage } from "./hooks/useLocalStorage";
+import InstallPrompt from "./components/InstallPrompt";
 
 interface Bet {
   id: number;
