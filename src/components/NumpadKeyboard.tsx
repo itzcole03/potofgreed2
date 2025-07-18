@@ -1,5 +1,5 @@
 import React from "react";
-import { Backspace } from "lucide-react";
+import { Delete } from "lucide-react";
 
 interface NumpadKeyboardProps {
   value: string;
@@ -163,7 +163,7 @@ const NumpadKeyboard: React.FC<NumpadKeyboardProps> = ({
             onClick={handleBackspace}
             className="bg-slate-700 hover:bg-slate-600 text-white text-xl font-semibold py-4 rounded-lg transition-colors flex items-center justify-center"
           >
-            <Backspace className="w-6 h-6" />
+            <Delete className="w-6 h-6" />
           </button>
         </div>
 
