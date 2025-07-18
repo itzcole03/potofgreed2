@@ -23,6 +23,7 @@ const SwipeableItem: React.FC<SwipeableItemProps> = ({
   const DELETE_BUTTON_WIDTH = 100;
 
   const handleTouchStart = (e: React.TouchEvent) => {
+    e.preventDefault();
     startX.current = e.touches[0].clientX;
     startTime.current = Date.now();
     setIsDragging(true);
@@ -30,6 +31,7 @@ const SwipeableItem: React.FC<SwipeableItemProps> = ({
 
   const handleTouchMove = (e: React.TouchEvent) => {
     if (!isDragging) return;
+    e.preventDefault();
 
     const currentX = e.touches[0].clientX;
     const diffX = startX.current - currentX;
@@ -41,8 +43,9 @@ const SwipeableItem: React.FC<SwipeableItemProps> = ({
     }
   };
 
-  const handleTouchEnd = () => {
+  const handleTouchEnd = (e: React.TouchEvent) => {
     if (!isDragging) return;
+    e.preventDefault();
 
     const swipeDistance = translateX;
     const swipeTime = Date.now() - startTime.current;
@@ -144,16 +147,19 @@ const SwipeableItem: React.FC<SwipeableItemProps> = ({
       {/* Main Content */}
       <div
         ref={itemRef}
-        className={`relative bg-slate-800 transition-transform duration-200 ${
+        className={`relative bg-slate-800 transition-transform duration-200 select-none ${
           isDragging ? "transition-none" : ""
         }`}
         style={{
           transform: `translateX(-${translateX}px)`,
           cursor: isDragging ? "grabbing" : "grab",
+          touchAction: "pan-y",
+          userSelect: "none",
         }}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
+        onTouchCancel={handleTouchEnd}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
@@ -164,8 +170,8 @@ const SwipeableItem: React.FC<SwipeableItemProps> = ({
 
       {/* Swipe Hint */}
       {!showDelete && translateX === 0 && (
-        <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white/30 text-xs pointer-events-none">
-          ← Swipe to delete
+        <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white/30 text-xs pointer-events-none animate-pulse">
+          ← Swipe left
         </div>
       )}
     </div>
