@@ -14,7 +14,7 @@ import {
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import InstallPrompt from "./components/InstallPrompt";
 import NumpadKeyboard from "./components/NumpadKeyboard";
-import SwipeableItem from "./components/SwipeableItem";
+import BetItem from "./components/BetItem";
 
 interface Bet {
   id: number;
@@ -264,47 +264,13 @@ function App() {
           {bets.length > 0 && (
             <div className="space-y-2 md:space-y-3 max-h-64 md:max-h-80 overflow-y-auto">
               {[...bets].reverse().map((bet) => (
-                <SwipeableItem
+                <BetItem
                   key={bet.id}
-                  onDelete={() => deleteBet(bet.id)}
-                  deleteText="Delete"
-                >
-                  <div className="flex items-center justify-between p-3 md:p-4">
-                    <div className="flex items-center space-x-2 md:space-x-4">
-                      <span className="text-white text-base md:text-lg font-medium">
-                        {formatCurrency(bet.amount)}
-                      </span>
-                      {bet.status !== "pending" && (
-                        <span
-                          className={`px-2 py-1 rounded text-xs md:text-sm font-medium ${
-                            bet.status === "win"
-                              ? "bg-green-600/20 text-green-300"
-                              : "bg-red-600/20 text-red-300"
-                          }`}
-                        >
-                          {bet.status === "win" ? "Won" : "Lost"}
-                        </span>
-                      )}
-                    </div>
-
-                    {bet.status === "pending" && (
-                      <div className="flex space-x-1 md:space-x-2">
-                        <button
-                          onClick={() => updateBetStatus(bet.id, "loss")}
-                          className="px-3 md:px-4 py-1.5 md:py-2 bg-red-600 hover:bg-red-700 text-white font-medium text-sm md:text-base rounded transition-all duration-200"
-                        >
-                          Loss
-                        </button>
-                        <button
-                          onClick={() => updateBetStatus(bet.id, "win")}
-                          className="px-3 md:px-4 py-1.5 md:py-2 bg-green-600 hover:bg-green-700 text-white font-medium text-sm md:text-base rounded transition-all duration-200"
-                        >
-                          Win
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                </SwipeableItem>
+                  bet={bet}
+                  onDelete={deleteBet}
+                  onUpdateStatus={updateBetStatus}
+                  formatCurrency={formatCurrency}
+                />
               ))}
             </div>
           )}
