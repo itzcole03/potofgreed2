@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import InstallPrompt from "./components/InstallPrompt";
+import NumpadKeyboard from "./components/NumpadKeyboard";
 
 interface Bet {
   id: number;
@@ -26,6 +27,7 @@ function App() {
   const [nextId, setNextId] = useLocalStorage<number>("bet-tracker-next-id", 1);
   const [showLossGif, setShowLossGif] = useState(false);
   const [showWinGif, setShowWinGif] = useState(false);
+  const [showNumpad, setShowNumpad] = useState(false);
 
   const addBet = () => {
     const betAmount = parseFloat(currentBet);
@@ -233,14 +235,15 @@ function App() {
                 $
               </span>
               <input
-                type="number"
+                type="text"
+                inputMode="none"
                 value={currentBet}
                 onChange={(e) => setCurrentBet(e.target.value)}
+                onFocus={() => setShowNumpad(true)}
                 onKeyPress={handleKeyPress}
                 placeholder="Enter bet amount"
-                className="w-full pl-8 md:pl-10 pr-3 md:pr-4 py-3 md:py-4 bg-slate-800 border border-slate-600 rounded-lg text-white text-base md:text-lg placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                step="0.01"
-                min="0"
+                className="w-full pl-8 md:pl-10 pr-3 md:pr-4 py-3 md:py-4 bg-slate-800 border border-slate-600 rounded-lg text-white text-base md:text-lg placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all cursor-pointer"
+                readOnly
               />
             </div>
             <button
@@ -299,6 +302,16 @@ function App() {
           )}
         </div>
       </div>
+
+      {/* Numpad Keyboard */}
+      {showNumpad && (
+        <NumpadKeyboard
+          value={currentBet}
+          onChange={setCurrentBet}
+          onClose={() => setShowNumpad(false)}
+        />
+      )}
+
       <InstallPrompt />
     </div>
   );
